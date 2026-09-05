@@ -16,6 +16,7 @@
         }
     ],
     "env": {
+        "APP_KEY": "base64:GAN3EBnkeU6Juxn8oNzZtmiJZDiH3yAbKiAXuYfz8ew=",
         "APP_ENV": "production",
         "APP_DEBUG": "true",
         "APP_URL": "https://example-atomik.vercel.app/",
