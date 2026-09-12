@@ -9,6 +9,8 @@
         "php": "^8.3",
         "laravel/framework": "^13.17",
         "laravel/tinker": "^3.0",
+        "livewire/livewire": "^4.4",
+        "livewire/volt": "^1.11",
         "mis3085/turso-laravel": "^2.0"
     },
     "require-dev": {

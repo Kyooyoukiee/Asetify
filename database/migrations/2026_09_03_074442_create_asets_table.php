@@ -16,10 +16,13 @@ return new class extends Migration
             $table->string('nama_aset');
             $table->integer('harga_aset');
             $table->date('tanggal_pembelian');
+            $table->integer('jumlah_aset');
+            $table->string('kondisi_aset');
+            $table->string('kategori_aset');
             $table->timestamps();
         });
     }
-
+    
     /**
      * Reverse the migrations.
      */

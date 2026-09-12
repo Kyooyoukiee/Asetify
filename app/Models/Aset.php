@@ -10,6 +10,9 @@ class Aset extends Model
         'nama_aset',
         'harga_aset',
         'tanggal_pembelian',
+        'jumlah_aset',
+        'kondisi_aset',
+        'kategori_aset',
     ];
 }
 
