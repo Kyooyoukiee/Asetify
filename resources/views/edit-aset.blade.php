@@ -24,103 +24,179 @@
             </div>
         </div>
 
+        @if ($errors->any())
+            <div class="mb-6 p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 animate-scale-in">
+                <div class="flex items-center gap-2 font-semibold text-sm mb-1">
+                    <svg class="w-5 h-5 text-red-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Ada beberapa kolom yang belum terisi dengan benar:
+                </div>
+                <ul class="list-disc list-inside text-xs sm:text-sm text-red-600 pl-2 space-y-0.5">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <!-- Form Card -->
         <div class="bg-white rounded-xl shadow-sm border border-gray-200 animate-scale-in" style="animation-delay: 0.2s;">
-            <form action="/update_aset/{{ $aset->id }}" method="POST" class="p-5 sm:p-8 space-y-5 sm:space-y-6">
+            <form id="assetEditForm" action="/update_aset/{{ $aset->id }}" method="POST" novalidate class="p-5 sm:p-8 space-y-5 sm:space-y-6">
                 @csrf
 
                 <!-- Nama Aset -->
-                <div>
-                    <label for="nama_aset" class="block text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">
+                <div class="field-group">
+                    <label for="nama_aset" class="block text-sm font-medium text-gray-700 mb-1.5">
                         Nama Aset <span class="text-red-500">*</span>
                     </label>
                     <input
                         type="text"
                         id="nama_aset"
                         name="nama_aset"
-                        value="{{ $aset->nama_aset }}"
+                        value="{{ old('nama_aset', $aset->nama_aset) }}"
                         required
-                        class="w-full px-3.5 py-2.5 sm:px-4 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 outline-none"
+                        class="w-full px-3.5 py-2.5 sm:px-4 sm:py-3 text-sm sm:text-base border @error('nama_aset') border-red-400 bg-red-50/30 focus:ring-red-500 @else border-gray-300 focus:ring-blue-500 @enderror rounded-lg focus:ring-2 focus:border-transparent transition-all duration-200 outline-none"
                         placeholder="Contoh: Laptop Dell XPS 13">
+                    <p class="error-msg text-xs text-red-500 mt-1.5 hidden items-center gap-1 font-medium">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        <span>Nama aset wajib diisi</span>
+                    </p>
+                    @error('nama_aset')
+                        <p class="text-xs text-red-500 mt-1.5 flex items-center gap-1 font-medium">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            <span>{{ $message }}</span>
+                        </p>
+                    @enderror
                 </div>
 
                 <!-- Harga dan Jumlah -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                    <div>
-                        <label for="harga_aset" class="block text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">
+                    <div class="field-group">
+                        <label for="harga_aset" class="block text-sm font-medium text-gray-700 mb-1.5">
                             Harga Aset (Rp) <span class="text-red-500">*</span>
                         </label>
                         <input
                             type="number"
                             id="harga_aset"
                             name="harga_aset"
-                            value="{{ $aset->harga_aset }}"
+                            value="{{ old('harga_aset', $aset->harga_aset) }}"
                             required
                             min="0"
-                            class="w-full px-3.5 py-2.5 sm:px-4 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 outline-none"
+                            class="w-full px-3.5 py-2.5 sm:px-4 sm:py-3 text-sm sm:text-base border @error('harga_aset') border-red-400 bg-red-50/30 focus:ring-red-500 @else border-gray-300 focus:ring-blue-500 @enderror rounded-lg focus:ring-2 focus:border-transparent transition-all duration-200 outline-none"
                             placeholder="15000000">
+                        <p class="error-msg text-xs text-red-500 mt-1.5 hidden items-center gap-1 font-medium">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            <span>Harga aset wajib diisi angka valid</span>
+                        </p>
+                        @error('harga_aset')
+                            <p class="text-xs text-red-500 mt-1.5 flex items-center gap-1 font-medium">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                <span>{{ $message }}</span>
+                            </p>
+                        @enderror
                     </div>
 
-                    <div>
-                        <label for="jumlah_aset" class="block text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">
+                    <div class="field-group">
+                        <label for="jumlah_aset" class="block text-sm font-medium text-gray-700 mb-1.5">
                             Jumlah Aset <span class="text-red-500">*</span>
                         </label>
                         <input
                             type="number"
                             id="jumlah_aset"
                             name="jumlah_aset"
-                            value="{{ $aset->jumlah_aset }}"
+                            value="{{ old('jumlah_aset', $aset->jumlah_aset) }}"
                             required
                             min="1"
-                            class="w-full px-3.5 py-2.5 sm:px-4 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 outline-none"
+                            class="w-full px-3.5 py-2.5 sm:px-4 sm:py-3 text-sm sm:text-base border @error('jumlah_aset') border-red-400 bg-red-50/30 focus:ring-red-500 @else border-gray-300 focus:ring-blue-500 @enderror rounded-lg focus:ring-2 focus:border-transparent transition-all duration-200 outline-none"
                             placeholder="1">
+                        <p class="error-msg text-xs text-red-500 mt-1.5 hidden items-center gap-1 font-medium">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            <span>Jumlah aset minimal 1 unit</span>
+                        </p>
+                        @error('jumlah_aset')
+                            <p class="text-xs text-red-500 mt-1.5 flex items-center gap-1 font-medium">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                <span>{{ $message }}</span>
+                            </p>
+                        @enderror
                     </div>
                 </div>
 
                 <!-- Tanggal Pembelian -->
-                <div>
-                    <label for="tanggal_pembelian" class="block text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">
+                <div class="field-group">
+                    <label for="tanggal_pembelian" class="block text-sm font-medium text-gray-700 mb-1.5">
                         Tanggal Pembelian <span class="text-red-500">*</span>
                     </label>
                     <input
                         type="date"
                         id="tanggal_pembelian"
                         name="tanggal_pembelian"
-                        value="{{ $aset->tanggal_pembelian }}"
+                        value="{{ old('tanggal_pembelian', $aset->tanggal_pembelian) }}"
                         required
-                        class="w-full px-3.5 py-2.5 sm:px-4 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 outline-none">
+                        class="w-full px-3.5 py-2.5 sm:px-4 sm:py-3 text-sm sm:text-base border @error('tanggal_pembelian') border-red-400 bg-red-50/30 focus:ring-red-500 @else border-gray-300 focus:ring-blue-500 @enderror rounded-lg focus:ring-2 focus:border-transparent transition-all duration-200 outline-none">
+                    <p class="error-msg text-xs text-red-500 mt-1.5 hidden items-center gap-1 font-medium">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        <span>Pilih tanggal pembelian aset</span>
+                    </p>
+                    @error('tanggal_pembelian')
+                        <p class="text-xs text-red-500 mt-1.5 flex items-center gap-1 font-medium">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            <span>{{ $message }}</span>
+                        </p>
+                    @enderror
                 </div>
 
                 <!-- Kondisi dan Kategori -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                    <div>
-                        <label for="kondisi_aset" class="block text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">
+                    <div class="field-group">
+                        <label for="kondisi_aset" class="block text-sm font-medium text-gray-700 mb-1.5">
                             Kondisi Aset <span class="text-red-500">*</span>
                         </label>
                         <select
                             id="kondisi_aset"
                             name="kondisi_aset"
                             required
-                            class="w-full px-3.5 py-2.5 sm:px-4 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 outline-none bg-white">
+                            class="w-full px-3.5 py-2.5 sm:px-4 sm:py-3 text-sm sm:text-base border @error('kondisi_aset') border-red-400 bg-red-50/30 focus:ring-red-500 @else border-gray-300 focus:ring-blue-500 @enderror rounded-lg focus:ring-2 focus:border-transparent transition-all duration-200 outline-none bg-white">
                             <option value="">Pilih kondisi...</option>
-                            <option value="Baru" {{ $aset->kondisi_aset == 'Baru' ? 'selected' : '' }}>Baru</option>
-                            <option value="Bekas" {{ $aset->kondisi_aset == 'Bekas' ? 'selected' : '' }}>Bekas</option>
-                            <option value="Rusak" {{ $aset->kondisi_aset == 'Rusak' ? 'selected' : '' }}>Rusak</option>
+                            <option value="Baru" {{ old('kondisi_aset', $aset->kondisi_aset) == 'Baru' ? 'selected' : '' }}>Baru</option>
+                            <option value="Bekas" {{ old('kondisi_aset', $aset->kondisi_aset) == 'Bekas' ? 'selected' : '' }}>Bekas</option>
+                            <option value="Rusak" {{ old('kondisi_aset', $aset->kondisi_aset) == 'Rusak' ? 'selected' : '' }}>Rusak</option>
                         </select>
+                        <p class="error-msg text-xs text-red-500 mt-1.5 hidden items-center gap-1 font-medium">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            <span>Silakan pilih salah satu kondisi aset</span>
+                        </p>
+                        @error('kondisi_aset')
+                            <p class="text-xs text-red-500 mt-1.5 flex items-center gap-1 font-medium">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                <span>{{ $message }}</span>
+                            </p>
+                        @enderror
                     </div>
 
-                    <div>
-                        <label for="kategori_aset" class="block text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">
+                    <div class="field-group">
+                        <label for="kategori_aset" class="block text-sm font-medium text-gray-700 mb-1.5">
                             Kategori Aset <span class="text-red-500">*</span>
                         </label>
                         <input
                             type="text"
                             id="kategori_aset"
                             name="kategori_aset"
-                            value="{{ $aset->kategori_aset }}"
+                            value="{{ old('kategori_aset', $aset->kategori_aset) }}"
                             required
-                            class="w-full px-3.5 py-2.5 sm:px-4 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 outline-none"
+                            class="w-full px-3.5 py-2.5 sm:px-4 sm:py-3 text-sm sm:text-base border @error('kategori_aset') border-red-400 bg-red-50/30 focus:ring-red-500 @else border-gray-300 focus:ring-blue-500 @enderror rounded-lg focus:ring-2 focus:border-transparent transition-all duration-200 outline-none"
                             placeholder="Contoh: Elektronik">
+                        <p class="error-msg text-xs text-red-500 mt-1.5 hidden items-center gap-1 font-medium">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            <span>Kategori aset wajib diisi</span>
+                        </p>
+                        @error('kategori_aset')
+                            <p class="text-xs text-red-500 mt-1.5 flex items-center gap-1 font-medium">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                <span>{{ $message }}</span>
+                            </p>
+                        @enderror
                     </div>
                 </div>
 
@@ -138,5 +214,68 @@
             </form>
         </div>
     </div>
+
+    <!-- Interactive Client-side Validation Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('assetEditForm');
+            const inputs = form.querySelectorAll('input, select');
+
+            function validateField(input) {
+                const group = input.closest('.field-group');
+                if (!group) return true;
+                const errorMsg = group.querySelector('.error-msg');
+                let isValid = true;
+
+                if (input.hasAttribute('required') && !input.value.trim()) {
+                    isValid = false;
+                } else if (input.type === 'number') {
+                    if (input.id === 'harga_aset' && Number(input.value) < 0) isValid = false;
+                    if (input.id === 'jumlah_aset' && Number(input.value) < 1) isValid = false;
+                }
+
+                if (!isValid) {
+                    input.classList.remove('border-gray-300', 'focus:ring-blue-500');
+                    input.classList.add('border-red-400', 'bg-red-50/30', 'focus:ring-red-500');
+                    if (errorMsg) {
+                        errorMsg.classList.remove('hidden');
+                        errorMsg.classList.add('flex');
+                    }
+                } else {
+                    input.classList.remove('border-red-400', 'bg-red-50/30', 'focus:ring-red-500');
+                    input.classList.add('border-gray-300', 'focus:ring-blue-500');
+                    if (errorMsg) {
+                        errorMsg.classList.add('hidden');
+                        errorMsg.classList.remove('flex');
+                    }
+                }
+                return isValid;
+            }
+
+            inputs.forEach(input => {
+                input.addEventListener('input', () => validateField(input));
+                input.addEventListener('change', () => validateField(input));
+            });
+
+            form.addEventListener('submit', function(e) {
+                let formValid = true;
+                let firstInvalid = null;
+
+                inputs.forEach(input => {
+                    if (!validateField(input)) {
+                        formValid = false;
+                        if (!firstInvalid) firstInvalid = input;
+                    }
+                });
+
+                if (!formValid) {
+                    e.preventDefault();
+                    if (firstInvalid) {
+                        firstInvalid.focus();
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>

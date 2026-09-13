@@ -10,54 +10,79 @@ class AsetController extends Controller
     public function index()
     {
         $asets = Aset::all();
-        return view('welcome', compact('asets',));
+        return view('welcome', compact('asets'));
     }
+
     public function tambah()
     {
         return view('tambah-aset');
     }
-    public function simpan_aset(Request $simpan_aset)
+
+    public function simpan_aset(Request $request)
     {
-        Aset::create([
-            'nama_aset' => $simpan_aset->nama_aset,
-            'harga_aset' => $simpan_aset->harga_aset,
-            'tanggal_pembelian' => $simpan_aset->tanggal_pembelian,
-            'jumlah_aset' => $simpan_aset->jumlah_aset,
-            'kondisi_aset' => $simpan_aset->kondisi_aset,
-            'kategori_aset' => $simpan_aset->kategori_aset,
+        $validated = $request->validate([
+            'nama_aset' => 'required|string|max:255',
+            'harga_aset' => 'required|numeric|min:0',
+            'tanggal_pembelian' => 'required|date',
+            'jumlah_aset' => 'required|integer|min:1',
+            'kondisi_aset' => 'required|in:Baru,Bekas,Rusak',
+            'kategori_aset' => 'required|string|max:100',
+        ], [
+            'nama_aset.required' => 'Nama aset wajib diisi.',
+            'harga_aset.required' => 'Harga aset wajib diisi.',
+            'harga_aset.numeric' => 'Harga aset harus berupa angka.',
+            'harga_aset.min' => 'Harga aset tidak boleh kurang dari 0.',
+            'tanggal_pembelian.required' => 'Tanggal pembelian wajib dipilih.',
+            'jumlah_aset.required' => 'Jumlah aset wajib diisi.',
+            'jumlah_aset.min' => 'Jumlah aset minimal 1 unit.',
+            'kondisi_aset.required' => 'Silakan pilih kondisi aset.',
+            'kategori_aset.required' => 'Kategori aset wajib diisi.',
         ]);
-        return redirect('/');
+
+        Aset::create($validated);
+
+        return redirect('/')->with('success', 'Aset baru berhasil ditambahkan!');
     }
+
     public function hapus_aset($id)
     {
-        $aset = Aset::find($id);
+        $aset = Aset::findOrFail($id);
         $aset->delete();
-        return redirect('/');
+
+        return redirect('/')->with('success', 'Aset berhasil dihapus!');
     }
+
     public function edit_aset($id)
     {
-        $aset = Aset::find($id);
+        $aset = Aset::findOrFail($id);
         return view('edit-aset', compact('aset'));
     }
-    public function update_aset(Request $update_aset, $id)
+
+    public function update_aset(Request $request, $id)
     {
-        $aset = Aset::find($id);
-        $aset->update([
-            'nama_aset' => $update_aset->nama_aset,
-            'harga_aset' => $update_aset->harga_aset,
-            'tanggal_pembelian' => $update_aset->tanggal_pembelian,
-            'jumlah_aset' => $update_aset->jumlah_aset,
-            'kondisi_aset' => $update_aset->kondisi_aset,
-            'kategori_aset' => $update_aset->kategori_aset,
+        $aset = Aset::findOrFail($id);
+
+        $validated = $request->validate([
+            'nama_aset' => 'required|string|max:255',
+            'harga_aset' => 'required|numeric|min:0',
+            'tanggal_pembelian' => 'required|date',
+            'jumlah_aset' => 'required|integer|min:1',
+            'kondisi_aset' => 'required|in:Baru,Bekas,Rusak',
+            'kategori_aset' => 'required|string|max:100',
+        ], [
+            'nama_aset.required' => 'Nama aset wajib diisi.',
+            'harga_aset.required' => 'Harga aset wajib diisi.',
+            'harga_aset.numeric' => 'Harga aset harus berupa angka.',
+            'harga_aset.min' => 'Harga aset tidak boleh kurang dari 0.',
+            'tanggal_pembelian.required' => 'Tanggal pembelian wajib dipilih.',
+            'jumlah_aset.required' => 'Jumlah aset wajib diisi.',
+            'jumlah_aset.min' => 'Jumlah aset minimal 1 unit.',
+            'kondisi_aset.required' => 'Silakan pilih kondisi aset.',
+            'kategori_aset.required' => 'Kategori aset wajib diisi.',
         ]);
-        return redirect('/');
+
+        $aset->update($validated);
+
+        return redirect('/')->with('success', 'Data aset berhasil diperbarui!');
     }
 }
-
-
-
-
-
-
-
-
