@@ -73,32 +73,32 @@ new class extends Component {
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
-                    <h1 class="text-2xl font-bold text-gray-900">Asetify</h1>
-                    <span class="ml-3 px-3 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full">Dashboard</span>
+                    <h1 class="text-xl sm:text-2xl font-bold text-gray-900">Asetify</h1>
+                    <span class="ml-2.5 sm:ml-3 px-2.5 py-0.5 text-xs font-medium bg-blue-100 text-blue-800 rounded-full">Dashboard</span>
                 </div>
-                <a href="/tambah_aset" class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-all duration-200 shadow-sm hover:shadow-md">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <a href="/tambah_aset" class="inline-flex items-center px-3.5 py-2 sm:px-4 sm:py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-all duration-200 shadow-sm hover:shadow-md">
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5 mr-1.5 sm:mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
                     </svg>
-                    Tambah Aset
+                    <span>Tambah Aset</span>
                 </a>
             </div>
         </div>
     </div>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         <!-- Statistics Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
             <!-- Total Aset -->
-            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 animate-fade-in-up" style="animation-delay: 0.1s;">
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-5 sm:p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 animate-fade-in-up" style="animation-delay: 0.1s;">
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-sm font-medium text-gray-600">Total Aset</p>
-                        <p class="text-3xl font-bold text-gray-900 mt-2">{{ $this->totalJumlah }}</p>
+                        <p class="text-2xl sm:text-3xl font-bold text-gray-900 mt-1 sm:mt-2">{{ $this->totalJumlah }}</p>
                         <p class="text-xs text-gray-500 mt-1">Unit aset terdaftar</p>
                     </div>
-                    <div class="p-3 bg-blue-100 rounded-full animate-bounce-subtle">
-                        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="p-3 bg-blue-50 rounded-full animate-bounce-subtle text-blue-600">
+                        <svg class="w-7 h-7 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
                         </svg>
                     </div>
@@ -106,15 +106,15 @@ new class extends Component {
             </div>
 
             <!-- Total Nilai -->
-            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 animate-fade-in-up" style="animation-delay: 0.2s;">
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-5 sm:p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 animate-fade-in-up" style="animation-delay: 0.2s;">
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-sm font-medium text-gray-600">Total Nilai Aset</p>
-                        <p class="text-3xl font-bold text-gray-900 mt-2">Rp {{ number_format($this->totalHarga / 1000000, 1) }}M</p>
-                        <p class="text-xs text-gray-500 mt-1">{{ number_format($this->totalHarga, 0, ',', '.') }}</p>
+                        <p class="text-2xl sm:text-3xl font-bold text-gray-900 mt-1 sm:mt-2">Rp {{ number_format($this->totalHarga / 1000000, 1) }}M</p>
+                        <p class="text-xs text-gray-500 mt-1">Rp {{ number_format($this->totalHarga, 0, ',', '.') }}</p>
                     </div>
-                    <div class="p-3 bg-green-100 rounded-full animate-bounce-subtle" style="animation-delay: 0.1s;">
-                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="p-3 bg-green-50 rounded-full animate-bounce-subtle text-green-600" style="animation-delay: 0.1s;">
+                        <svg class="w-7 h-7 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
                     </div>
@@ -122,15 +122,15 @@ new class extends Component {
             </div>
 
             <!-- Kategori -->
-            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 animate-fade-in-up" style="animation-delay: 0.3s;">
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-5 sm:p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 animate-fade-in-up sm:col-span-2 md:col-span-1" style="animation-delay: 0.3s;">
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-sm font-medium text-gray-600">Kategori Aset</p>
-                        <p class="text-3xl font-bold text-gray-900 mt-2">{{ $this->daftarKategori->count() }}</p>
+                        <p class="text-2xl sm:text-3xl font-bold text-gray-900 mt-1 sm:mt-2">{{ $this->daftarKategori->count() }}</p>
                         <p class="text-xs text-gray-500 mt-1">Kategori berbeda</p>
                     </div>
-                    <div class="p-3 bg-purple-100 rounded-full animate-bounce-subtle" style="animation-delay: 0.2s;">
-                        <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="p-3 bg-purple-50 rounded-full animate-bounce-subtle text-purple-600" style="animation-delay: 0.2s;">
+                        <svg class="w-7 h-7 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
                         </svg>
                     </div>
@@ -139,32 +139,32 @@ new class extends Component {
         </div>
 
         <!-- Filters and Chart Section -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6 sm:mb-8">
             <!-- Filters Card -->
-            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 animate-slide-in-right" style="animation-delay: 0.4s;">
-                <h3 class="text-lg font-semibold text-gray-900 mb-4">Filter Aset</h3>
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-5 sm:p-6 animate-slide-in-right" style="animation-delay: 0.4s;">
+                <h3 class="text-base sm:text-lg font-semibold text-gray-900 mb-4">Filter Aset</h3>
                 <div class="space-y-4">
                     <div>
-                        <label for="search" class="block text-sm font-medium text-gray-700 mb-2">Cari Nama Aset</label>
+                        <label for="search" class="block text-sm font-medium text-gray-700 mb-1.5">Cari Nama Aset</label>
                         <div class="relative">
                             <input
                                 type="text"
                                 id="search"
                                 wire:model.live.debounce.300ms="query"
                                 placeholder="Ketik untuk mencari..."
-                                class="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 outline-none">
-                            <svg class="w-5 h-5 text-gray-400 absolute left-3 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                class="w-full pl-10 pr-4 py-2 sm:py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 outline-none">
+                            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 absolute left-3 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                             </svg>
                         </div>
                     </div>
 
                     <div>
-                        <label for="kategori" class="block text-sm font-medium text-gray-700 mb-2">Kategori</label>
+                        <label for="kategori" class="block text-sm font-medium text-gray-700 mb-1.5">Kategori</label>
                         <select
                             id="kategori"
                             wire:model.live="kategori"
-                            class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 outline-none bg-white">
+                            class="w-full px-3.5 py-2 sm:py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 outline-none bg-white">
                             <option value="">Semua Kategori</option>
                             @foreach ($this->daftarKategori as $k)
                                 <option value="{{ $k }}">{{ $k }}</option>
@@ -175,29 +175,29 @@ new class extends Component {
                     @if($this->query || $this->kategori)
                         <button
                             wire:click="$set('query', ''); $set('kategori', '')"
-                            class="w-full px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium rounded-lg transition-colors duration-200">
+                            class="w-full px-4 py-2 text-sm bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium rounded-lg transition-colors duration-200">
                             Reset Filter
                         </button>
                     @endif
                 </div>
 
                 <!-- Kondisi Statistics -->
-                <div class="mt-6 pt-6 border-t border-gray-200">
-                    <h4 class="text-sm font-semibold text-gray-900 mb-3">Kondisi Aset</h4>
+                <div class="mt-5 pt-5 border-t border-gray-200">
+                    <h4 class="text-sm font-semibold text-gray-900 mb-3">Statistik Kondisi</h4>
                     <div class="space-y-2">
                         @foreach($this->statistikKondisi as $kondisi => $jumlah)
-                            <div class="flex items-center justify-between">
+                            <div class="flex items-center justify-between text-sm">
                                 <div class="flex items-center">
                                     @if($kondisi == 'Baru')
-                                        <span class="w-3 h-3 bg-green-500 rounded-full mr-2"></span>
+                                        <span class="w-2.5 h-2.5 bg-green-500 rounded-full mr-2"></span>
                                     @elseif($kondisi == 'Bekas')
-                                        <span class="w-3 h-3 bg-yellow-500 rounded-full mr-2"></span>
+                                        <span class="w-2.5 h-2.5 bg-yellow-500 rounded-full mr-2"></span>
                                     @else
-                                        <span class="w-3 h-3 bg-red-500 rounded-full mr-2"></span>
+                                        <span class="w-2.5 h-2.5 bg-red-500 rounded-full mr-2"></span>
                                     @endif
-                                    <span class="text-sm text-gray-600">{{ $kondisi }}</span>
+                                    <span class="text-gray-600">{{ $kondisi }}</span>
                                 </div>
-                                <span class="text-sm font-semibold text-gray-900">{{ $jumlah }}</span>
+                                <span class="font-semibold text-gray-900">{{ $jumlah }} unit</span>
                             </div>
                         @endforeach
                     </div>
@@ -205,22 +205,97 @@ new class extends Component {
             </div>
 
             <!-- Chart Card -->
-            <div class="lg:col-span-2 glass-effect rounded-xl shadow-lg border border-white/30 p-6 animate-scale-in" style="animation-delay: 0.5s;">
-                <h3 class="text-lg font-semibold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">Pembelian Aset Bulanan</h3>
-                <div class="h-64">
+            <div class="lg:col-span-2 bg-white rounded-xl shadow-sm border border-gray-200 p-5 sm:p-6 animate-scale-in" style="animation-delay: 0.5s;">
+                <h3 class="text-base sm:text-lg font-semibold text-gray-900 mb-4">Pembelian Aset Bulanan</h3>
+                <div class="h-60 sm:h-64">
                     <canvas id="chartBulanan" wire:ignore></canvas>
                 </div>
             </div>
         </div>
 
-        <!-- Asset Table -->
-        <div class="glass-effect rounded-xl shadow-lg border border-white/30 overflow-hidden animate-fade-in-up" style="animation-delay: 0.6s;">
-            <div class="px-6 py-4 border-b border-white/30">
-                <h2 class="text-xl font-semibold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Daftar Aset</h2>
-                <p class="text-sm text-gray-700 mt-1">Menampilkan {{ $this->asets->count() }} aset</p>
+        <!-- Asset Table & Mobile Cards -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden animate-fade-in-up" style="animation-delay: 0.6s;">
+            <div class="px-5 py-4 border-b border-gray-200 flex items-center justify-between">
+                <div>
+                    <h2 class="text-lg sm:text-xl font-semibold text-gray-900">Daftar Aset</h2>
+                    <p class="text-xs sm:text-sm text-gray-500 mt-0.5">Menampilkan {{ $this->asets->count() }} aset</p>
+                </div>
             </div>
 
-            <div class="overflow-x-auto">
+            <!-- Mobile View: Modern Cards (Tampil otomatis di HP / Layar Kecil) -->
+            <div class="block md:hidden divide-y divide-gray-100">
+                @forelse ($this->asets as $aset)
+                    <div class="p-4 space-y-3 hover:bg-gray-50/80 transition-colors">
+                        <!-- Header: Nama, Kategori, Badge Kondisi -->
+                        <div class="flex items-start justify-between gap-2">
+                            <div class="space-y-0.5">
+                                <h3 class="font-semibold text-gray-900 text-base leading-snug">{{ $aset->nama_aset }}</h3>
+                                <span class="inline-block px-2.5 py-0.5 text-xs font-medium rounded-md bg-blue-50 text-blue-700 border border-blue-100/60">
+                                    {{ $aset->kategori_aset }}
+                                </span>
+                            </div>
+                            <div>
+                                @if($aset->kondisi_aset == 'Baru')
+                                    <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
+                                        Baru
+                                    </span>
+                                @elseif($aset->kondisi_aset == 'Bekas')
+                                    <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                        Bekas
+                                    </span>
+                                @else
+                                    <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-800">
+                                        Rusak
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <!-- Mid Box: Detail Harga & Jumlah -->
+                        <div class="bg-gray-50 p-3 rounded-lg border border-gray-100 space-y-2 text-sm">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs text-gray-500">Harga Satuan</span>
+                                <span class="font-semibold text-gray-900">Rp {{ number_format($aset->harga_aset, 0, ',', '.') }}</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs text-gray-500">Jumlah Unit</span>
+                                <span class="font-medium text-gray-800">{{ $aset->jumlah_aset }} unit</span>
+                            </div>
+                            <div class="pt-1.5 border-t border-gray-200/60 flex items-center justify-between text-xs">
+                                <span class="text-gray-500">Tgl Beli: {{ \Carbon\Carbon::parse($aset->tanggal_pembelian)->format('d M Y') }}</span>
+                                <span class="font-bold text-blue-600">Total: Rp {{ number_format($aset->harga_aset * $aset->jumlah_aset, 0, ',', '.') }}</span>
+                            </div>
+                        </div>
+
+                        <!-- Bottom: Action Buttons -->
+                        <div class="flex items-center justify-end gap-2 pt-0.5">
+                            <a href="/edit_aset/{{ $aset->id }}" class="flex-1 text-center py-2 px-3 text-xs font-medium text-blue-700 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors flex items-center justify-center gap-1.5">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                </svg>
+                                Edit
+                            </a>
+                            <button onclick="confirmDelete({{ $aset->id }}, '{{ addslashes($aset->nama_aset) }}')" class="flex-1 text-center py-2 px-3 text-xs font-medium text-red-700 bg-red-50 hover:bg-red-100 rounded-lg transition-colors flex items-center justify-center gap-1.5">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                </svg>
+                                Hapus
+                            </button>
+                        </div>
+                    </div>
+                @empty
+                    <div class="px-4 py-10 text-center">
+                        <svg class="w-12 h-12 text-gray-300 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"/>
+                        </svg>
+                        <p class="text-gray-500 text-sm font-medium">Tidak ada aset ditemukan</p>
+                        <p class="text-gray-400 text-xs mt-1">Coba ubah filter atau tambah aset baru</p>
+                    </div>
+                @endforelse
+            </div>
+
+            <!-- Desktop View: Table (Tampil di Layar Tablet & Komputer / Layar Lebar) -->
+            <div class="hidden md:block overflow-x-auto">
                 <table class="w-full">
                     <thead class="bg-gray-50 border-b border-gray-200">
                         <tr>
@@ -245,20 +320,20 @@ new class extends Component {
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="text-sm text-gray-900">{{ \Carbon\Carbon::parse($aset->tanggal_pembelian)->format('d M Y') }}</div>
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900 text-center">{{ $aset->jumlah_aset }}</div>
+                                <td class="px-6 py-4 whitespace-nowrap text-center">
+                                    <div class="text-sm text-gray-900">{{ $aset->jumlah_aset }} unit</div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-center">
                                     @if($aset->kondisi_aset == 'Baru')
-                                        <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                        <span class="px-2.5 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                             Baru
                                         </span>
                                     @elseif($aset->kondisi_aset == 'Bekas')
-                                        <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                        <span class="px-2.5 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
                                             Bekas
                                         </span>
                                     @else
-                                        <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                        <span class="px-2.5 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
                                             Rusak
                                         </span>
                                     @endif
@@ -268,16 +343,16 @@ new class extends Component {
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                     <div class="flex items-center justify-center gap-2">
-                                        <a href="/edit_aset/{{ $aset->id }}" class="text-blue-600 hover:text-blue-900 transition-colors duration-150">
+                                        <a href="/edit_aset/{{ $aset->id }}" class="text-blue-600 hover:text-blue-900 p-1.5 hover:bg-blue-50 rounded-lg transition-colors" title="Edit">
                                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                                             </svg>
                                         </a>
-                                        <a href="/hapus_aset/{{ $aset->id }}" class="text-red-600 hover:text-red-900 transition-colors duration-150" onclick="event.preventDefault(); confirmDelete({{ $aset->id }}, '{{ $aset->nama_aset }}')">
+                                        <button onclick="confirmDelete({{ $aset->id }}, '{{ addslashes($aset->nama_aset) }}')" class="text-red-600 hover:text-red-900 p-1.5 hover:bg-red-50 rounded-lg transition-colors" title="Hapus">
                                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
                                             </svg>
-                                        </a>
+                                        </button>
                                     </div>
                                 </td>
                             </tr>
@@ -301,41 +376,40 @@ new class extends Component {
     </div>
 
     <!-- Delete Confirmation Modal -->
-    <div id="deleteModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50" style="display: none;">
+    <div id="deleteModal" class="fixed inset-0 bg-gray-900/60 backdrop-blur-sm z-50 transition-opacity duration-200" style="display: none;">
         <div class="flex items-center justify-center min-h-screen px-4">
-            <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full animate-scale-in">
-                <div class="p-6">
-                    <!-- Icon -->
-                    <div class="flex items-center justify-center w-16 h-16 mx-auto mb-4 bg-red-100 rounded-full">
-                        <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+            <div class="bg-white rounded-2xl shadow-xl max-w-md w-full p-6 transform transition-all animate-scale-in border border-gray-100">
+                <!-- Icon -->
+                <div class="flex items-center justify-center w-14 h-14 mx-auto mb-4 bg-red-50 rounded-full text-red-600">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                    </svg>
+                </div>
+
+                <!-- Content -->
+                <div class="text-center mb-6">
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">Hapus Aset?</h3>
+                    <p class="text-sm text-gray-500">Anda yakin ingin menghapus aset <span class="font-semibold text-gray-800" id="assetName"></span>?</p>
+                    <p class="text-xs text-red-500 mt-2 bg-red-50 py-1.5 px-3 rounded-lg inline-block">⚠️ Tindakan ini tidak dapat dibatalkan</p>
+                </div>
+
+                <!-- Buttons -->
+                <div class="flex gap-3">
+                    <button
+                        type="button"
+                        onclick="closeDeleteModal()"
+                        class="flex-1 px-4 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm font-medium rounded-xl transition-all duration-150">
+                        Batal
+                    </button>
+                    <button
+                        type="button"
+                        id="confirmDeleteBtn"
+                        class="flex-1 px-4 py-2.5 bg-red-600 hover:bg-red-700 text-white text-sm font-medium rounded-xl transition-all duration-150 shadow-sm hover:shadow flex items-center justify-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
                         </svg>
-                    </div>
-
-                    <!-- Content -->
-                    <div class="text-center mb-6">
-                        <h3 class="text-xl font-bold text-gray-900 mb-2">Hapus Aset?</h3>
-                        <p class="text-gray-600">Anda yakin ingin menghapus aset</p>
-                        <p class="text-gray-900 font-semibold mt-1" id="assetName"></p>
-                        <p class="text-sm text-gray-500 mt-2">Tindakan ini tidak dapat dibatalkan.</p>
-                    </div>
-
-                    <!-- Buttons -->
-                    <div class="flex gap-3">
-                        <button
-                            onclick="closeDeleteModal()"
-                            class="flex-1 px-4 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium rounded-lg transition-all duration-200">
-                            Batal
-                        </button>
-                        <button
-                            id="confirmDeleteBtn"
-                            class="flex-1 px-4 py-3 bg-red-600 hover:bg-red-700 text-white font-medium rounded-lg transition-all duration-200 flex items-center justify-center gap-2">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
-                            </svg>
-                            Hapus
-                        </button>
-                    </div>
+                        Hapus
+                    </button>
                 </div>
             </div>
         </div>
