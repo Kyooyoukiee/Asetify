@@ -121,9 +121,6 @@
 
                 <!-- Submit Button -->
                 <div class="flex items-center justify-end gap-3 sm:gap-4 pt-4 border-t border-gray-200">
-                    <a href="/" class="px-4 py-2.5 sm:px-6 sm:py-3 text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors">
-                        Batal
-                    </a>
                     <button
                         type="submit"
                         class="w-full sm:w-auto px-5 py-2.5 sm:px-6 sm:py-3 bg-blue-600 hover:bg-blue-700 text-white text-sm sm:text-base font-medium rounded-lg shadow-sm hover:shadow-md transition-all duration-200 flex items-center justify-center">
